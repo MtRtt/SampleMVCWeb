@@ -6,27 +6,22 @@ namespace SampleMVCWeb.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public ViewResult Details()
         {
-            _logger = logger;
-        }
+            ViewData["Title"] = "Student Details Page";
+            ViewData["Header"] = "Student Details";
 
-        public IActionResult Index()
-        {
+            Student student = new Student()
+            {
+                StudentId = 1,
+                Name = "Taghi",
+                Branch = "CSE",
+                Section = "A",
+                Gender = "Male"
+            };
+            ViewData["Student"] = student;
             return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
